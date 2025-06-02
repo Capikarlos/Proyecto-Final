@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO APP</title>
+
+    <!-- BOOTSRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Punto de entrada ESM (Ecmascript Modules) -->
+    <script defer type="module" src="./src/main.js"></script>
+</head>
+
+<body class="bg-body-tertiary">
+    <main class="container py-5">
+        <!-- Registro de usuario -->
+        <section class="mb-5">
+            <div class="card p-4">
+                <h2 class="mb-3"><i class="bi bi-person-circle me-2"></i>Registro de usuario</h2>
+                <form id="registerForm" novalidate class="row gy-3 needs-validation">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Nombre</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-person"></i>
+                            </span>
+                            <input id="name" name="name" class="form-control" minlength="2" required />
+                            <div class="invalid-feedback">Nombre requerido</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Correo</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input id="email" name="email" placeholder="exampl@example.com" type="email"
+                                class="form-control" required />
+                            <div class="invalid-feedback">Correo inválido</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-key"></i></span>
+                            <input id="password" name="password" type="password" class="form-control" minlength="6"
+                                maxlength="20" required />
+                            <div class="invalid-feedback">Mínimo 6 caracteres</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone" class="form-label">Teléfono (10 dígitos)</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                            <input id="phone" name="phone" placeholder="55 5555 5555" pattern="\\d{10}"
+                                class="form-control" />
+                            <div class="invalid-feedback">10 dígitos requeridos</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="nickname" class="form-label">Nickname</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-person"></i>
+                            </span>
+                            <input id="nickname" name="nickname" class="form-control" />
+                            <div class="invalid-feedback">Nombre de usuario en la app</div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100"><i class="bi bi-person-plus"></i> Registrar</button>
+                    </div>
+                </form>
+                <pre id="registerOutput" class="mt-4 p-3 bg-light border rounded"></pre>
+            </div>
+        </section>
+
+        <!-- Separador -->
+        <hr class="my-5">
+
+        <!-- Lista de tareas -->
+        <section>
+            <div class="card p-4">
+                <h2 class="mb-3"><i class="bi bi-card-checklist me-2"></i>Mi lista de tareas</h2>
+                <form id="todoForm" class="row g-3 mb-4" novalidate>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-check2-square"></i></span>
+                            <input name="task" id="task" class="form-control" placeholder="Nueva tarea..."
+                                autocomplete="off" required />
+                            <div class="invalid-feedback">Agrega una tarea</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" name="dueDate" id="dueDate" class="form-control" required />
+                        <div class="invalid-feedback">Fecha requerida</div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-success w-100"><i class="bi bi-plus-circle"></i> Agregar tarea</button>
+                    </div>
+                </form>
+                <ul id="todoList" class="list-group"></ul>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
