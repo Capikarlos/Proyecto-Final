@@ -42,21 +42,36 @@ export function renderRegisterOutput(pre, dataObj) {
 export function renderTodoList(ul) {
     ul.replaceChildren(); // limpia todo el contenedor
 
+    // 1) Creamos un Set para evitar IDs repetidos en esta llamada
+    const usados = new Set();
+    const MAX_ID = 826; // número total de personajes en la API
+
     todos.forEach((todo, index) => {
         // <li> que contendrá la flip-card
         const li = document.createElement("li");
-        li.className = ""; // no necesita clases extra; el CSS se encarga
+        li.className = "";
         if (todo.done) li.classList.add("done");
 
         // Contenedor principal de la tarjeta “flip”
         const flipCard = document.createElement("div");
         flipCard.className = "flip-card";
         if (todo.done) flipCard.classList.add("done");
-        flipCard.dataset.index = index; // guardamos índice para el listener
+        flipCard.dataset.index = index;
 
         // ------------ CARA FRONTAL ------------
         const front = document.createElement("div");
         front.className = "face front";
+
+        // 2) Generar ID aleatorio entre 1 y MAX_ID, sin repetir
+        let randomId;
+        do {
+            randomId = Math.floor(Math.random() * MAX_ID) + 1;
+        } while (usados.has(randomId));
+        usados.add(randomId);
+
+        // 3) Asignar la imagen de la API como fondo en la cara frontal
+        front.style.backgroundImage = 
+            `url('https://rickandmortyapi.com/api/character/avatar/${randomId}.jpeg')`;
 
         // ------------ CARA TRASERA ------------
         const back = document.createElement("div");
@@ -74,15 +89,14 @@ export function renderTodoList(ul) {
       </div>
     `;
 
-        // Armamos la tarjeta
+        // Armamos la tarjeta (front + back)
         flipCard.appendChild(front);
         flipCard.appendChild(back);
         li.appendChild(flipCard);
         ul.appendChild(li);
 
-        // ---------- EVENTO PARA VOLTEAR LA TARJETA ------------
+        // Evento para voltear la tarjeta (excepto al clicar en botones)
         flipCard.addEventListener("click", (e) => {
-            // Evitamos que al hacer clic en los botones “toggle” / “delete” también se voltee
             if (e.target.closest("button")) return;
             flipCard.classList.toggle("flipped");
         });

@@ -72,22 +72,15 @@ ul.todo-grid li {
 
 /* ------------------- Cara Frontal: imagen de Rick & Morty ------------------- */
 .flip-card .front {
-    background-color: #1b1b1b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    background-position: center;
-    /* Ejemplo con imagen de Rick: puedes cambiar a otra URL de la API si gustas */
-    background-image: url('https://rickandmortyapi.com/api/character/avatar/1.jpeg');
+  background-color: #1b1b1b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
 }
 
-/* Si quieres que las tarjetas front muestren texto en lugar de imagen, podrías usar:
-   content: "Rick & Morty";
-   color: #66fcf1;
-   font-size: 1.2rem; 
-   font-weight: bold;
-*/
+
 
 /* ------------------ Cara Trasera: contenido de la tarea ------------------ */
 .flip-card .back {
